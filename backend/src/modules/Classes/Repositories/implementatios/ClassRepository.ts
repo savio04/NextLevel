@@ -9,8 +9,9 @@ class ClassRepository implements IClassRepository{
     constructor(){
         this.classesRepository = getRepository(Class)
     }
-    async create({ name, mod_id, class_date}:IClassDTO){
+    async create({ id,name, mod_id, class_date}:IClassDTO){
         const classes = this.classesRepository.create({
+            id,
             name,
             mod_id,
             class_date
@@ -25,6 +26,12 @@ class ClassRepository implements IClassRepository{
         .leftJoinAndSelect('class.Module', 'modules')
         .getMany()
         return classes
+    }
+
+    async findById(id:string){
+        const classe = await this.classesRepository.findOne({id})
+
+        return classe as Class
     }
 }
 
