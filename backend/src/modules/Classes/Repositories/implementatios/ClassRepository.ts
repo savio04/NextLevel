@@ -18,6 +18,14 @@ class ClassRepository implements IClassRepository{
 
         await this.classesRepository.save(classes)
     }
+
+    async findAll(){
+        const classes = await this.classesRepository
+        .createQueryBuilder('class')
+        .leftJoinAndSelect('class.Module', 'modules')
+        .getMany()
+        return classes
+    }
 }
 
 export default ClassRepository
