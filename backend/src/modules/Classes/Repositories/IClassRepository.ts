@@ -9,6 +9,7 @@ export interface IClassDTO{
 
 interface IClassRepository{
     create(data:IClassDTO):Promise<void>
+    delete(id:string):Promise<void>
     findAll():Promise<Class[]>
     findById(id:string):Promise<Class>
 }

@@ -33,6 +33,10 @@ class ClassRepository implements IClassRepository{
 
         return classe as Class
     }
+
+    async delete(id:string){
+        await this.classesRepository.delete(id)
+    }
 }
 
 export default ClassRepository
