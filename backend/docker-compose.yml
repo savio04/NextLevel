@@ -1,0 +1,28 @@
+version: '3.7'
+services: 
+    next_level_database:
+        image: postgres
+        container_name: next_level_database
+        ports: 
+            - 5432:5432
+        environment: 
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=01075783
+            - POSTGRES_DB=nextlevel
+        volumes:
+            - pgdata:/data/postgres
+    next_level_api:
+        build: .
+        container_name: next_level_api
+        ports: 
+            - 2323:2323
+        volumes: 
+            - .:/usr/app/nextlevel
+        links: 
+            - next_level_database
+        depends_on: 
+            - next_level_database
+
+volumes: 
+    pgdata:
+        driver: local
