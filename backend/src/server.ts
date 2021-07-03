@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import 'express-async-errors'
+import cors from 'cors'
 import express, { NextFunction, Request, Response } from 'express'
 import createConnection from  './database'
 import Routes from './routes'
@@ -11,6 +12,7 @@ const app = express()
 
 
 app.use(express.json())
+app.use(cors())
 app.use('/next-level',Routes)
 
 app.use((err:Error, request:Request,response:Response,next:NextFunction) => {
