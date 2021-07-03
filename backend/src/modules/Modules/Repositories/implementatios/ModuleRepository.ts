@@ -1,5 +1,4 @@
 import { getRepository, Repository } from "typeorm";
-import db from "../../../../database";
 import Module from "../../entities/Module";
 import IModuleRepository, { IModuleDTO } from "../IModuleRepository";
 
@@ -9,8 +8,11 @@ class ModuleRepository implements IModuleRepository{
     constructor(){
         this.moduleRepository = getRepository(Module)
     }
-    async create({name}:IModuleDTO){
-        const module = this.moduleRepository.create({name})
+    async create({id,name}:IModuleDTO){
+        const module = this.moduleRepository.create({
+            id,
+            name
+        })
 
         await this.moduleRepository.save(module)
     }
@@ -31,6 +33,15 @@ class ModuleRepository implements IModuleRepository{
         `,
         [id])
         return count as number
+    }
+    async findById(id:string){
+        const classe = await this.moduleRepository.findOne({id})
+
+        return classe as Module
+    }
+
+    async delete(id:string){
+        await this.moduleRepository.delete(id)
     }
 }
 

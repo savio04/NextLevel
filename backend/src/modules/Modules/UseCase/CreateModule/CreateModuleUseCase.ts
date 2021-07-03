@@ -1,5 +1,9 @@
 import IModuleRepository from "../../Repositories/IModuleRepository";
 
+interface IRequest{
+    id?:string
+    name:string
+}
 class CreateModuleUseCase{
     constructor(private moduleRepository:IModuleRepository){}
 
