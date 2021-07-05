@@ -59,10 +59,10 @@ function Home(){
             <HomeFooter>
                 <div>
                     <a href="https://www.instagram.com/savio.araujo0/"><FiInstagram  size= {20}/></a>
-                    <a href="www.linkedin.com/in/sávio-araújo-gomes"><FiLinkedin size = {20} /></a>
+                    <a href="https://www.linkedin.com/in/sávio-araújo-gomes"><FiLinkedin size = {20} /></a>
                     <a href="https://github.com/savio04"><FiGithub size = {20}/></a>
                 </div>
-                <p>Feito com <FiHeart size = {20} /> para você</p>
+                <p>Feito com <FiHeart size = {20} /> para você!!</p>
             </HomeFooter>
         </HomeContainer>
     )

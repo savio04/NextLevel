@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import { shade } from 'polished'
+import { Link } from 'react-router-dom'
 
+export const AdminContainer = styled.div``;
 export const HomeContainer = styled.div`
     width: 100vw;
     display: flex;
@@ -15,7 +16,7 @@ export const HomeContainer = styled.div`
     }
 `;
 
-export const HomeNavContainer = styled.header`
+export const AdminNavContainer = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,13 +25,29 @@ export const HomeNavContainer = styled.header`
     border-bottom: solid #6C63FF 0.1rem;
 `;
 
-export const HomeNav = styled.div`
+export const AdminNav = styled.div`
     display: flex;
     flex-direction: row;
     width: 80%;
     justify-content: space-between;
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
+    button{
+        background-color: #6C63FF;
+        height: 3rem;
+        width: 10%;
+        border:none;
+        border-radius: 0.6rem;
+        color: #FFF;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        :hover{
+            background-color: ${shade(0.2, '#6C63FF')};
+        }
+    }
 
     nav{
         display: flex;
@@ -68,8 +85,13 @@ export const HomeNav = styled.div`
                 display: none;
             }
         }
+
+        button{
+            width: 25%;
+        }
     }
 `;
+
 
 export const ButtonLogin = styled(Link)`
     background-color: #6C63FF;
@@ -103,48 +125,5 @@ export const Image = styled.div`
     p{
         font-size: 1.3rem;
         font-weight: bold;
-    }
-`;
-export const HomeContent = styled.section`
-    display: grid;
-    grid-template-columns: repeat(auto-fit,18rem);
-    max-width: 70%;
-    height: 100%;
-    margin-top: 2rem;
-    column-gap: 1.5rem;
-    row-gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 6rem;
-`;
-export const HomeFooter = styled.footer`
-    background-color: #6C63FF;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 5rem;
-    div{
-        display: flex;
-        justify-content: space-between;
-        width: 5rem;
-        padding-bottom: 0.8rem;
-        a{
-            color: #FFF;
-        }
-    }
-    p{
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        svg{
-            color: #FFF;
-            margin-left: 0.2rem;
-            margin-right: 0.2rem;
-        }
     }
 `;
