@@ -1,15 +1,20 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch,BrowserRouter } from 'react-router-dom'
 import SignIn from '../pages/SignIn'
+import { Router } from './route'
 import Home from '../pages/Home'
+import AdminPage from '../pages/Admin'
 
 
-const Routes:React.FC = () => {
+const Routes = () => {
   return(
-    <Switch>
-      <Route path = '/' component = {Home} exact />
-      <Route path = '/session' component = {SignIn} />
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Router path = '/' component = {Home} exact />
+        <Router path = '/session' component = {SignIn} />
+        <Router path = '/admin' component = {AdminPage} isProvider/>
+      </Switch>
+    </BrowserRouter>
   )
 }
 

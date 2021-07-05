@@ -1,13 +1,18 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { shade } from 'polished'
 
 export const HomeContainer = styled.div`
     width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+    h1{
+        width: 100%;
+        text-align: center;
+        margin-top: 02rem;
+    }
 `;
 
 export const HomeNavContainer = styled.header`
@@ -29,35 +34,79 @@ export const HomeNav = styled.div`
 
     nav{
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-around;
         align-items: center;
-        width: 50%;
-        li{
+        width: 40%;
+        div{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            li{
                 list-style: none;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            a{
-                text-decoration: none;
-                background-color: #6C63FF;
-                padding: 1rem;
-                border-radius: 0.4rem;
-                color: #FFF;
-                font-weight: bold;
+                a{
+                    width: 100%;
+                    height: 100%;
+                    text-decoration: none;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-bottom: solid transparent 0.2rem;
+                    color: #FFF;
+                }
+                & :hover{
+                    border-bottom-color: #FFF;
+                }
+            }
+        }
+    }
+
+    @media(max-width: 80rem){
+        div{
+            li{
+                display: none;
             }
         }
     }
 `;
 
+export const ButtonLogin = styled(Link)`
+    background-color: #6C63FF;
+    height: 3rem;
+    width: 50%;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    :hover{
+        background-color: ${shade(0.2, '#6C63FF')};
+    }
+
+    @media(max-width: 45rem){
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+`;
+
 export const Image = styled.div`
-    width: 7rem;
-    img{
-        width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg{
+        margin-right: 0.2rem;
+    }
+    p{
+        font-size: 1.3rem;
+        font-weight: bold;
     }
 `;
 export const HomeContent = styled.section`
     display: grid;
-    grid-area: content;
     grid-template-columns: repeat(auto-fit,18rem);
     max-width: 70%;
     height: 100%;
@@ -66,16 +115,30 @@ export const HomeContent = styled.section`
     row-gap: 1rem;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0.8rem;
+    margin-bottom: 6rem;
 `;
 export const HomeFooter = styled.footer`
     background-color: #6C63FF;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    h2{
-        color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    div{
+        display: flex;
+        justify-content: space-between;
+        width: 5rem;
+        padding-bottom: 0.5rem;
+        svg{
+            color: #FFF;
+        }
     }
-
     p{
         color: #FFF;
+        text-align: center;
     }
 `;

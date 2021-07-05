@@ -1,20 +1,29 @@
-import React, {useCallback,useRef} from 'react'
+import React, {useCallback,useRef,useContext} from 'react'
 import { Content, Container } from './styles'
-import Logo from '../../assets/logo.svg'
+import LogIn from '../../assets/login.svg'
 import { FiCornerDownLeft,FiMail,FiLock } from 'react-icons/fi'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 import { Link } from 'react-router-dom'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
+import {AuthContext} from '../../context/AuthContext'
 import * as Yup from 'yup'
 import getValidationErrors from '../../utils/getValidationsError'
+import Alert from '@material-ui/lab/Alert'
+import { useState } from 'react'
+interface IInputLogin{
+  email:string,
+  password:string
+}
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
 
   const formRef = useRef<FormHandles>(null)
-  
-  const handleSubmit = useCallback(async (data:object) => {
+  const Authcontext =  useContext(AuthContext)
+  const { signInContext, isError} = Authcontext
+
+  const handleSubmit = useCallback(async (data:IInputLogin) => {
     try{
       formRef.current?.setErrors({})
 
@@ -26,25 +35,46 @@ const SignIn: React.FC = () => {
       await schema.validate(data,{
         abortEarly: false
       })
+
+      await signInContext({
+        email: data.email,
+        password: data.password
+      })
     }catch(err){
       const errors = getValidationErrors(err)
       formRef.current?.setErrors(errors)
     }
-  }, [])
-
+  },[signInContext])
+  
   return (
     <Container>
       <Content>
-        <img src = {Logo} alt = 'GoBarber' />
+        {isError && 
+          <Alert 
+            style = {{
+              position:'absolute',
+              right: '2rem',
+              top: '1rem',
+              width: '20rem'
+            }} 
+            severity = 'error'
+            variant = 'filled'
+            className = 'alert'
+            >Email/password incorrect
+          </Alert>
+        }
 
+        <img src = {LogIn} alt = 'GoBarber' />
+
+        <h1>Faça seu login</h1>
         <Form ref = {formRef} onSubmit = {handleSubmit} >
-          <h1>Faça seu login</h1>
 
           <Input placeholder = 'E-mail' name = 'email' icon = {FiMail} />
           <Input name = 'password' type = 'password' placeholder = 'Senha' icon = {FiLock} />
 
           <Button type = 'submit'>Enviar</Button>
         </Form>
+
 
         <Link to="/">
           <FiCornerDownLeft size = {20} />
