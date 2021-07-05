@@ -10,16 +10,16 @@ ClassRoute.post('/', ensureAdmin , (request,response) => {
     createClassController().handle(request,response)
 })
 
-ClassRoute.get('/', (request,response) => {
-    listclassesController().handle(request,response)
+ClassRoute.get('/', async (request,response) => {
+    await listclassesController().handle(request,response)
 })
 
-ClassRoute.put('/:id',ensureAdmin ,(request,response) => {
-    updateClassController().handle(request,response)
+ClassRoute.put('/:id',ensureAdmin ,async (request,response) => {
+    await updateClassController().handle(request,response)
 })
 
-ClassRoute.delete('/:id',ensureAdmin,(request,response) => {
-    deleteClassController().handle(request,response)
+ClassRoute.delete('/:id',ensureAdmin,async (request,response) => {
+    await deleteClassController().handle(request,response)
 })
 
 export default ClassRoute

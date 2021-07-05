@@ -6,12 +6,12 @@ import updateModuleController from '../modules/Modules/UseCase/UpdateModule'
 import deleteModuleController from '../modules/Modules/UseCase/DeleteModule'
 const ModuleRoute = Router()
 
-ModuleRoute.post('/',ensureAdmin, (request,response) => {
-    createModuleController().handle(request,response)
+ModuleRoute.post('/',ensureAdmin, async (request,response) => {
+    await createModuleController().handle(request,response)
 })
 
-ModuleRoute.get('/', (request,response) => {
-    listModulesController().handle(request,response)
+ModuleRoute.get('/', async (request,response) => {
+    await listModulesController().handle(request,response)
 })
 
 ModuleRoute.put('/:id',(request,response) => {
