@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { shade } from 'polished'
 import { Link } from 'react-router-dom'
 
+/*Header*/
 export const AdminContainer = styled.div``;
 export const HomeContainer = styled.div`
     width: 100vw;
@@ -126,4 +127,24 @@ export const Image = styled.div`
         font-size: 1.3rem;
         font-weight: bold;
     }
+`;
+
+/**Create  */
+
+export const AdminModuleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+`;
+
+export const AdminCreatemodule = styled.div`
+    margin-top: 3rem;
+    max-height: 14rem;
+    width: 100%;
+`;
+
+export const AdminTableModules = styled.div`
+    width: 80%;
+    margin-top: 3rem;
 `;

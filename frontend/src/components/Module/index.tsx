@@ -6,6 +6,7 @@ export interface IModule{
   id?:string
   name:string
   numberOfClass:number
+  created_at?:Date
 }
 
 function Module({id,name,numberOfClass}:IModule){

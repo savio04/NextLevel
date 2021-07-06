@@ -58,7 +58,6 @@ const SignIn = () => {
             }} 
             severity = 'error'
             variant = 'filled'
-            className = 'alert'
             >Email/password incorrect
           </Alert>
         }
