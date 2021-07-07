@@ -1,131 +1,54 @@
 import styled from 'styled-components'
-import { shade } from 'polished'
-import { Link } from 'react-router-dom'
 
-/*Header*/
-export const AdminContainer = styled.div``;
-export const HomeContainer = styled.div`
-    width: 100vw;
+
+export const AdminContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    h1{
-        width: 100%;
-        text-align: center;
-        margin-top: 02rem;
+    height: 100vh;
+    background-color: #FFF;
+`;
+
+/**Side Bar */
+
+export const AdminSideBar = styled.section`
+    width: 20rem;
+    height: 100%;
+    margin-right: 3rem;
+    box-shadow: 0.2rem 0rem 1.5rem rgba(0,0,0,0.2);
+
+    header{
+        color: #778899;
+        margin-top: 1.4rem;
+        margin-left: 1.8rem;
     }
-`;
 
-export const AdminNavContainer = styled.header`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 6rem;
-    width: 100%;
-    border-bottom: solid #6C63FF 0.1rem;
-`;
-
-export const AdminNav = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    justify-content: space-between;
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
-    button{
-        background-color: #6C63FF;
-        height: 3rem;
-        width: 10%;
-        border:none;
-        border-radius: 0.6rem;
-        color: #FFF;
+    h2{
         font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        :hover{
-            background-color: ${shade(0.2, '#6C63FF')};
-        }
-    }
-
-    nav{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 40%;
-        div{
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: space-evenly;
-            li{
-                list-style: none;
-                a{
-                    width: 100%;
-                    height: 100%;
-                    text-decoration: none;
-                    font-weight: bold;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-bottom: solid transparent 0.2rem;
-                    color: #FFF;
-                }
-                & :hover{
-                    border-bottom-color: #FFF;
-                }
-            }
-        }
-    }
-
-    @media(max-width: 80rem){
-        div{
-            li{
-                display: none;
-            }
-        }
-
-        button{
-            width: 25%;
-        }
-    }
-`;
-
-
-export const ButtonLogin = styled(Link)`
-    background-color: #6C63FF;
-    height: 3rem;
-    width: 50%;
-    border-radius: 0.6rem;
-    text-decoration: none;
-    color: #FFF;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    :hover{
-        background-color: ${shade(0.2, '#6C63FF')};
-    }
-
-    @media(max-width: 45rem){
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-`;
-
-export const Image = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg{
-        margin-right: 0.2rem;
+        margin-bottom: 0.5rem;
     }
     p{
-        font-size: 1.3rem;
-        font-weight: bold;
+        font-size: 0.9rem;
+    }
+`;
+
+export const AdminNav = styled.nav`
+    margin-top: 1.2rem;
+
+    ul{
+        margin-top: 3rem;
+    }
+    li{
+        list-style: none;
+        width: 100%;
+        height: 3rem;
+        margin-top: .2rem;   
+    }
+
+    button{
+        border-radius: 0;
+    }
+
+    svg{
+        margin-right: 0.8rem;
     }
 `;
 
@@ -144,7 +67,7 @@ export const AdminCreatemodule = styled.div`
     width: 100%;
 `;
 
-export const AdminTableModules = styled.div`
+export const AdminContent = styled.div`
     width: 80%;
     margin-top: 3rem;
 `;

@@ -11,11 +11,16 @@ interface localStorageProps{
   user:object
 }
 
+interface IUser{
+  name: string
+  email:string
+}
+
 
 interface AuthContextProps{
   signInContext(inputProps: InputProps):Promise<void>
   LogOut():void
-  user:object
+  user:IUser
   isError: boolean
 }
 

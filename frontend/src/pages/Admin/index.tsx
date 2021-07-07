@@ -1,42 +1,60 @@
 import React from 'react'
 import { useContext } from 'react'
-import { useCallback } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import {
+    AdminSideBar,
     AdminContainer,
-    AdminNavContainer,
-    AdminNav,
-    Image,
-    AdminModuleContainer,
-    AdminCreatemodule,
-    AdminTableModules
+    AdminContent,
+    AdminNav
 } from './styles'
-import { FiBox } from 'react-icons/fi'
 import { useState } from 'react'
 import Tables from '../../components/Table'
 import { IModule } from '../../components/Module'
 import api from '../../services/api'
 import { TableRow, TableCell } from '@material-ui/core'
-import { FiEdit, FiTrash2 } from 'react-icons/fi'
-import { useEffect } from 'react'
+import { FiEdit, FiTrash2,FiBook, FiLogOut, FiFolder} from 'react-icons/fi'
+import ButtonNav from '../../components/ButtonNav'
+import Button  from '../../components/Button'
+
+interface IClassDTO{
+    id: string,
+    name: string
+    mod_id: string,
+    class_date: Date,
+    created_at: Date,
+    Module?: object
+}
 
 function AdminPage(){
     const AutheticateContext = useContext(AuthContext)
-    const { LogOut } = AutheticateContext
+    const { LogOut,user } = AutheticateContext
     
     const [isCreateModule,setIsCreateModule] = useState(false)
     const [name, setName] = useState('')
-    const [token,setToken] = useState(() => localStorage.getItem('@Plataform:token'))
+    const [seeModules,setSeeModules] = useState(false)
+    const [seeClasses,setSeeClasses] = useState(false)
     const [modules,setModules] = useState<IModule[]>(() => {
         api.get('/module')
         .then(response => setModules(response.data))
         return []
     })
+    const [classes,setClasses] = useState<IClassDTO[]>(() => {
+        api.get('/class')
+        .then(response => setClasses(response.data))
+        return []
+    })
 
-    function handleCreateModuleInput(){
-        setIsCreateModule(!isCreateModule)
+    //Buttons nav bar admin
+    const handleSeeModule = () => {
+        setSeeModules(true)
+        setSeeClasses(false)
+    }
+    const handleSeeClass = () => {
+        setSeeModules(false)
+        setSeeClasses(true)
     }
     const handleCreateModule = async() => {
+        const token = localStorage.getItem('@Plataform:token')
         await api.post(
             '/module',
             {name},
@@ -51,6 +69,7 @@ function AdminPage(){
     }
 
     const handleDeleteModule = async (id:string) => {
+        const token = localStorage.getItem('@Plataform:token')
         await api.delete(
             `/module/${id}`,
             {headers: 
@@ -65,59 +84,83 @@ function AdminPage(){
         }
     }
 
-    const handleLogOut = useCallback(() => {
-        LogOut()
-    },[LogOut])
-
 
     return(
         <AdminContainer>
-            <AdminNavContainer>
+            <AdminSideBar>
+                <header>
+                    <h2>Ola {user.name}!</h2>
+                    <p>Bem vindo ao painel admnistrativo</p>
+                </header>
                 <AdminNav>
-                    <Image>
-                        <FiBox size = {20}  />
-                        <p>NextLevel</p>
-                    </Image>
-                        
-                    <button onClick = {handleLogOut}>Sair</button>
+                    <ul>
+                        <li>
+                            <ButtonNav isFocus = {seeModules} onClick = {handleSeeModule}>
+                                <FiBook  size = {20}/>
+                                Modulos
+                            </ButtonNav>
+                        </li>
+                        <li>
+                            <ButtonNav isFocus = {seeClasses} onClick = {handleSeeClass} >
+                                <FiFolder  size = {20}/>
+                                Aulas
+                            </ButtonNav>
+                        </li>
+                        <li>
+                            <ButtonNav onClick = {LogOut}>
+                                <FiLogOut  size = {20}/>
+                                Sair
+                            </ButtonNav>
+                        </li>
+                    </ul>
                 </AdminNav>
-            </AdminNavContainer>
-            <AdminModuleContainer>
-                <AdminCreatemodule>
-                    <h1>Modules</h1>
-                    <hr style = {{color: '#FFF'}} />
-                    {isCreateModule?
-                        <div>
-                            <input type="text" 
-                                placeholder = 'nome'
-                                value = {name}
-                                onChange = {(event) => setName(event.target.value)}
-                            />
-                            <button onClick = {handleCreateModuleInput}>Cancelar</button>
-                            <button onClick = {handleCreateModule}>Salvar</button>
-                        </div>
-                        :
-                        <button onClick = {handleCreateModuleInput}>Cadastrar</button>
-                    }
-                </AdminCreatemodule>
-                <AdminTableModules>
+            </AdminSideBar>
+            <AdminContent>
+                {seeModules &&
+                    (modules.length === 0 ?
+                    <h2 style= {{color: 'black'}}>Nenhum modulo disponivel</h2>
+                    :
                     <Tables>
-                        {modules.map(module => (
-                            <TableRow key={module.id}>
-                                <TableCell style = {{color: '#FFF'}} align="center">{module.name}</TableCell>
-                                <TableCell style = {{color: '#FFF'}} align="center">{module.numberOfClass}</TableCell>
-                                <TableCell style = {{color: '#FFF'}} align="center">{module.created_at}</TableCell>
-                                <TableCell style = {{color: '#FFF'}} align="center">
-                                    <a href="#"><FiEdit size  = {20} /></a>
-                                </TableCell>
-                                <TableCell style = {{color: '#FFF'}} align="center">
-                                    <button onClick = {() => handleDeleteModule(module.id as string)}> <FiTrash2 size = {20} /> </button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </Tables>
-                </AdminTableModules>
-            </AdminModuleContainer>
+                        {
+                            modules.map(module => (
+                                <TableRow key={module.id}>
+                                    <TableCell style = {{color: '#312E38'}} align="center">{module.name}</TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">{module.numberOfClass}</TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">{module.created_at}</TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">
+                                        <a href="#"><FiEdit size  = {20} /></a>
+                                    </TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">
+                                        <button onClick = {() => handleDeleteModule(module.id as string)}> <FiTrash2 size = {20} /> </button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        }
+                    </Tables>)
+                }
+
+                {seeClasses &&
+                    (classes.length === 0 ?
+                        <h2 style = {{color: 'black'}}>Nenhuma Aula disponivel</h2>
+                        :
+                        <Tables>
+                            {classes.map(classe => (
+                                <TableRow key={classe.id}>
+                                    <TableCell style = {{color: '#312E38'}} align="center">{classe.name}</TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">{classe.mod_id}</TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">{classe.class_date}</TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">
+                                        <a href="#"><FiEdit size  = {20} /></a>
+                                    </TableCell>
+                                    <TableCell style = {{color: '#312E38'}} align="center">
+                                        <button onClick = {() => handleDeleteModule(module.id as string)}> <FiTrash2 size = {20} /> </button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </Tables>
+                    )
+                }
+            </AdminContent>
         </AdminContainer>
     )
 }
