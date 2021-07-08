@@ -1,5 +1,5 @@
 # Projeto Next Level
-## Uma site que faz cadastros de modulos e aulas, bem como buscas e atualizações
+## Um site que faz cadastros de modulos e aulas, bem como buscas e atualizações
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
@@ -25,9 +25,9 @@ ou
 $ sudo docker-compose up -d 
 
 # Verifique se a aplicação está rodando corretamente 
-$ docker logs saudemais_api -f
+$ docker logs next_level_api -f
 ou
-$ sudo docker logs saudemais_api -f
+$ sudo docker logs next_level_api -f
 
 # Execute o seguinte comando para gerar o usuario administrador
 $ npm run seed
@@ -57,10 +57,10 @@ password: 12345
 
 ### Projeto em execução
 ![alt text](https://github.com/savio04/NextLevel/blob/main/frontend/src/assets/githubAssests/img1.png)
-
+### Pagina de login
+![alt text](https://github.com/savio04/NextLevel/blob/main/frontend/src/assets/githubAssests/img2.png)
 ### Área administrativa
 ![alt text](https://github.com/savio04/NextLevel/blob/main/frontend/src/assets/githubAssests/img3.png)
 
-### Pagina do administrador
 
 ##### 🚧  Api Mais Saúde 🚀 Em construção...  🚧
