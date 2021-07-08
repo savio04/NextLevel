@@ -81,10 +81,7 @@ function AdminPage(){
         const mes  = (data.getMonth()+1).toString() //+1 pois no getMonth Janeiro começa com zero.
         const mesF = (mes.length === 1) ? '0'+mes : mes
         const anoF = data.getFullYear();
-        const hours = data.getHours().toString()
-        const minutes = data.getMinutes().toString()
-        const minutesF = (minutes.length ===1 ? '0' + minutes: minutes)
-        return `${diaF}/${mesF}/${anoF} às ${hours}:${minutesF}`
+        return `${diaF}/${mesF}/${anoF}`
     }
 
     const handleOpenModalModule = (id:string,name:string) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModuleContainer,ModuleContent,ModuleIcon } from './styles'
+import { ModuleContainer,ModuleContent,ModuleIcon,ContainerClass,CardClass } from './styles'
 import { FiBookOpen } from 'react-icons/fi'
 import Modal from '@material-ui/core/Modal'
 import { useState } from 'react'
@@ -28,6 +28,15 @@ function Module({id,name,numberOfClass}:IModule){
     return []
   })
 
+  const dateFormat = (data:Date) => {
+    const dia  = data.getDate().toString()
+    const diaF = (dia.length === 1) ? '0'+dia : dia
+    const mes  = (data.getMonth()+1).toString() //+1 pois no getMonth Janeiro começa com zero.
+    const mesF = (mes.length === 1) ? '0'+mes : mes
+    const anoF = data.getFullYear();
+    return `${diaF}/${mesF}/${anoF}`
+}
+
   const handleOpen = () => {
     setViewModal(true)
   };
@@ -41,15 +50,21 @@ function Module({id,name,numberOfClass}:IModule){
       {viewModal && <Modal 
           open = {viewModal}
           onClose = {handleClose}
+          style = {{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
         >
-          <div>
-            {classes.map(classe => classe.mod_id === id && <div>
-              <h2>{classe.name}</h2>
-              <p> {classe.class_date} </p>
-              <p>{classe.module}</p>
-            </div>
-            )}
-          </div>
+          <ContainerClass>
+            {
+              classes.map(classe => classe.mod_id === id && <CardClass>
+                <h2>{classe.name}</h2>
+                <p>Data: {dateFormat(new Date(classe.class_date))} </p>
+              </CardClass>)
+            }
+          </ContainerClass>
       </Modal>
       }
       <ModuleContainer onClick = {handleOpen} >
