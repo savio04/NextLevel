@@ -39,7 +39,7 @@ $ npm run seed
 ```bash
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd NextLevel/fronend
+$ cd NextLevel/frontend
 
 # Instale as dependências
 $ npm install
@@ -47,9 +47,20 @@ $ npm install
 # Execute o projeto
 $ npm run start
 
-# O api inciará na porta:3000 - acesse <http://localhost:3000>
+# O pojeto inciará na porta:3000 - acesse <http://localhost:3000>
 ```
 
-### Documentação
-![alt text](https://github.com/savio04/NestJs/blob/main/project/github_assets/doc-api.png)
+## Acesso a área do administrador
+Para acessar o área administrativa use as seguintes credenciais:
+email: admin@gmail.com
+password: 12345
+
+### Projeto em execução
+![alt text](https://github.com/savio04/NextLevel/blob/main/frontend/src/assets/githubAssests/img1.png)
+
+### Área administrativa
+![alt text](https://github.com/savio04/NextLevel/blob/main/frontend/src/assets/githubAssests/img3.png)
+
+### Pagina do administrador
+
 ##### 🚧  Api Mais Saúde 🚀 Em construção...  🚧
