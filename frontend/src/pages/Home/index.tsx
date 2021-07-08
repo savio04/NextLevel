@@ -52,6 +52,7 @@ function Home(){
                     </div>
                 }
                 {modules.map(module => <Module 
+                    id = {module.id}
                     name = {module.name} 
                     numberOfClass = {module.numberOfClass} 
                 />)}

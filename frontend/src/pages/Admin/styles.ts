@@ -3,15 +3,16 @@ import styled from 'styled-components'
 
 export const AdminContainer = styled.div`
     display: flex;
-    height: 100vh;
     background-color: #FFF;
+    padding-bottom: 2rem;
 `;
 
 /**Side Bar */
 
 export const AdminSideBar = styled.section`
     width: 20rem;
-    height: 100%;
+    height: 100vh;
+    border-bottom-right-radius: 2rem;
     margin-right: 3rem;
     box-shadow: 0.2rem 0rem 1.5rem rgba(0,0,0,0.2);
 
@@ -70,4 +71,26 @@ export const AdminCreatemodule = styled.div`
 export const AdminContent = styled.div`
     width: 80%;
     margin-top: 3rem;
+`;
+
+export const AdminCreateModuleFiled = styled.div`
+    color: black;
+    margin-bottom: 4rem;
+    h2{
+        margin-bottom: 1rem;
+    }
+`;
+export const AdminCreateModuleEnableButton = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+`;
+
+export const AdminCreateModuleSend = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    button{
+        margin-top: 1rem;
+    }
 `;
