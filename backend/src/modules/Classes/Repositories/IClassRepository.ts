@@ -1,9 +1,11 @@
+import { IModuleDTO } from "../../Modules/Repositories/IModuleRepository";
 import Class from "../entities/Class";
 
 export interface IClassDTO{
     id?:string
     name: string
-    mod_id:string
+    module:string
+    mod_id?:string
     class_date:Date
 }
 

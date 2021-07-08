@@ -5,14 +5,14 @@ class UpdateClassController{
     constructor(private updateClassUseCase:UpdateClassUseCase){}
 
     async handle(request:Request,response:Response){
-        const { name, class_date, mod_id } = request.body
+        const { name, class_date, module } = request.body
         const {id} = request.params
 
         await this.updateClassUseCase.execute({
             id,
             name,
             class_date,
-            mod_id
+            module
         })
 
         return response.status(200).send()

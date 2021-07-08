@@ -15,6 +15,9 @@ class Class{
 
     @Column()
     mod_id:string
+
+    @Column()
+    module:string
     
     @Column()
     class_date:Date

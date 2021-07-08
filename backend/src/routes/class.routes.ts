@@ -6,8 +6,8 @@ import updateClassController from '../modules/Classes/UseCase/UpdateClass'
 import deleteClassController from '../modules/Classes/UseCase/DeleteClass'
 const ClassRoute = Router()
 
-ClassRoute.post('/', ensureAdmin , (request,response) => {
-    createClassController().handle(request,response)
+ClassRoute.post('/', ensureAdmin , async (request,response) => {
+    await createClassController().handle(request,response)
 })
 
 ClassRoute.get('/', async (request,response) => {

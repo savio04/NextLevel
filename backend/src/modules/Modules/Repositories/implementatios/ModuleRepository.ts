@@ -43,6 +43,12 @@ class ModuleRepository implements IModuleRepository{
     async delete(id:string){
         await this.moduleRepository.delete(id)
     }
+
+    async findByName(name:string){
+        const moduleSerch = await this.moduleRepository.findOne({name})
+        
+        return moduleSerch 
+    }
 }
 
 export default ModuleRepository

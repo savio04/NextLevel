@@ -1,12 +1,12 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateTableClasses1625252763156 implements MigrationInterface {
+export class CreateTableModules1625252768430 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'modules',
-                columns:[
+                name: 'classes',
+                columns: [
                     {
                         name: 'id',
                         type: 'uuid',
@@ -20,9 +20,31 @@ export class CreateTableClasses1625252763156 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
+                        name: 'class_date',
+                        type: 'varchar'
+                    },
+                    {
+                        name: 'module',
+                        type: 'varchar'
+                    },
+                    {
+                        name: 'mod_id',
+                        type: 'uuid'
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()'
+                    }
+                ],
+                foreignKeys:[
+                    {
+                        name: 'module_classe_fk',
+                        referencedTableName: 'modules',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['mod_id'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'SET NULL'
                     }
                 ]
             })
@@ -30,7 +52,7 @@ export class CreateTableClasses1625252763156 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('modules')
+        await queryRunner.dropTable('classes')
     }
 
 }

@@ -1,5 +1,4 @@
 import { getRepository, Repository } from "typeorm";
-import db from "../../../../database";
 import Class from "../../entities/Class";
 import IClassRepository, { IClassDTO } from "../IClassRepository";
 
@@ -9,10 +8,11 @@ class ClassRepository implements IClassRepository{
     constructor(){
         this.classesRepository = getRepository(Class)
     }
-    async create({ id,name, mod_id, class_date}:IClassDTO){
+    async create({ id,name, module, mod_id, class_date}:IClassDTO){
         const classes = this.classesRepository.create({
             id,
             name,
+            module,
             mod_id,
             class_date
         })
@@ -23,7 +23,7 @@ class ClassRepository implements IClassRepository{
     async findAll(){
         const classes = await this.classesRepository
         .createQueryBuilder('class')
-        .leftJoinAndSelect('class.Module', 'modules')
+        .orderBy('name')
         .getMany()
         return classes
     }

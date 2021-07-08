@@ -11,6 +11,7 @@ interface IModuleRepository{
     findAll():Promise<Module[]>
     countClassModule(id:string):Promise<number>
     findById(id:string):Promise<Module>
+    findByName(name:string):Promise<Module | undefined>
 }
 
 export default IModuleRepository
