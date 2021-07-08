@@ -11,6 +11,9 @@ services:
             - POSTGRES_DB=nextlevel
         volumes:
             - pgdata:/data/postgres
+        networks: 
+            - link
+
     next_level_api:
         build: .
         container_name: next_level_api
@@ -22,7 +25,12 @@ services:
             - next_level_database
         depends_on: 
             - next_level_database
+        networks: 
+            - link
 
+networks: 
+    link:
+        
 volumes: 
     pgdata:
         driver: local

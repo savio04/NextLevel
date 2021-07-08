@@ -29,6 +29,9 @@ $ docker logs next_level_api -f
 ou
 $ sudo docker logs next_level_api -f
 
+# Execute o seguinte comando para criar as tabelas
+$ npm run typeorm migrition:run
+
 # Execute o seguinte comando para gerar o usuario administrador
 $ npm run seed
 
