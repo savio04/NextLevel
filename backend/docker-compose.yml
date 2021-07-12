@@ -21,6 +21,7 @@ services:
             - 2323:2323
         volumes: 
             - .:/usr/app/nextlevel
+            - /usr/app/nextlevel/node_modules
         links: 
             - next_level_database
         depends_on: 
